@@ -112,6 +112,7 @@
             background: linear-gradient(180deg, var(--light) 0%, var(--white) 100%);
             position: relative; overflow: hidden;
         }
+        .hero .paw-decoration { color: var(--primary); }
         .hero::before {
             content: ''; position: absolute; top: -50%; right: -20%;
             width: 600px; height: 600px; background: var(--primary-light);
@@ -386,6 +387,67 @@
         .footer .logo-text { color: rgba(255, 255, 255, 0.9); }
         .footer .logo-text span { color: var(--primary); }
 
+        /* Paw Prints Decorations */
+        .paw-decoration {
+            position: absolute;
+            font-size: 120px;
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 0;
+            color: var(--primary-dark);
+        }
+        .paw-decoration.paw-1 { top: 15%; left: 5%; transform: rotate(-25deg); }
+        .paw-decoration.paw-2 { top: 60%; right: 3%; transform: rotate(15deg); }
+        .paw-decoration.paw-3 { bottom: 10%; left: 8%; transform: rotate(-10deg); font-size: 80px; }
+
+        .features { position: relative; overflow: hidden; }
+        .features .paw-decoration { color: var(--dark); opacity: 0.04; }
+        .features .paw-bg-1 { top: 5%; right: 5%; transform: rotate(20deg); font-size: 150px; }
+        .features .paw-bg-2 { bottom: 10%; left: 3%; transform: rotate(-30deg); font-size: 100px; }
+
+        .modules { position: relative; overflow: hidden; }
+        .modules .paw-decoration { color: white; opacity: 0.03; }
+        .modules .paw-bg-1 { top: 10%; left: 5%; transform: rotate(-20deg); font-size: 140px; }
+        .modules .paw-bg-2 { bottom: 15%; right: 8%; transform: rotate(25deg); font-size: 90px; }
+
+        .preview { position: relative; overflow: hidden; }
+        .preview .paw-decoration { opacity: 0.03; }
+        .preview .paw-bg-1 { top: 8%; left: 2%; transform: rotate(15deg); font-size: 100px; }
+        .preview .paw-bg-2 { bottom: 5%; right: 5%; transform: rotate(-20deg); font-size: 130px; }
+
+        .access-levels { position: relative; overflow: hidden; }
+        .access-levels .paw-decoration { color: white; opacity: 0.04; }
+        .access-levels .paw-bg-1 { top: 20%; right: 5%; transform: rotate(30deg); font-size: 120px; }
+        .access-levels .paw-bg-2 { bottom: 10%; left: 8%; transform: rotate(-15deg); font-size: 80px; }
+
+        .cta { position: relative; overflow: hidden; }
+        .cta .paw-decoration { color: white; opacity: 0.08; }
+        .cta .paw-bg-1 { top: 20%; left: 10%; transform: rotate(-25deg); font-size: 100px; }
+        .cta .paw-bg-2 { bottom: 15%; right: 10%; transform: rotate(20deg); font-size: 80px; }
+
+        .footer { position: relative; overflow: hidden; }
+        .footer .paw-decoration { color: white; opacity: 0.03; }
+        .footer .paw-bg-1 { top: 30%; right: 10%; transform: rotate(15deg); font-size: 90px; }
+
+        /* Paw trail effect */
+        .paw-trail {
+            position: absolute;
+            display: flex;
+            gap: 60px;
+            opacity: 0.025;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .paw-trail i { font-size: 40px; color: var(--dark); }
+        .paw-trail i:nth-child(odd) { transform: rotate(-15deg) translateY(-10px); }
+        .paw-trail i:nth-child(even) { transform: rotate(15deg) translateY(10px); }
+
+        .differentials { position: relative; overflow: hidden; }
+        .differentials .paw-trail { bottom: 30px; left: 50%; transform: translateX(-50%); }
+
+        .evolution { position: relative; overflow: hidden; }
+        .evolution .paw-trail { top: 20px; left: 10%; }
+
         /* Responsive */
         @media (max-width: 768px) {
             .nav-links { display: none; }
@@ -467,6 +529,9 @@
     </a>
 
     <section class="hero">
+        <i class="fas fa-paw paw-decoration paw-1"></i>
+        <i class="fas fa-paw paw-decoration paw-2"></i>
+        <i class="fas fa-paw paw-decoration paw-3"></i>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
@@ -501,6 +566,8 @@
     </section>
 
     <section class="features" id="features">
+        <i class="fas fa-paw paw-decoration paw-bg-1"></i>
+        <i class="fas fa-paw paw-decoration paw-bg-2"></i>
         <div class="container">
             <div class="section-header">
                 <span class="section-badge">Recursos</span>
@@ -522,6 +589,8 @@
     </section>
 
     <section class="preview" id="preview">
+        <i class="fas fa-paw paw-decoration paw-bg-1"></i>
+        <i class="fas fa-paw paw-decoration paw-bg-2"></i>
         <div class="container">
             <div class="section-header">
                 <span class="section-badge">Preview</span>
@@ -625,6 +694,8 @@
     </section>
 
     <section class="modules" id="modules">
+        <i class="fas fa-paw paw-decoration paw-bg-1"></i>
+        <i class="fas fa-paw paw-decoration paw-bg-2"></i>
         <div class="container">
             <div class="section-header">
                 <span class="section-badge">Módulos</span>
@@ -643,6 +714,13 @@
     </section>
 
     <section class="differentials">
+        <div class="paw-trail">
+            <i class="fas fa-paw"></i>
+            <i class="fas fa-paw"></i>
+            <i class="fas fa-paw"></i>
+            <i class="fas fa-paw"></i>
+            <i class="fas fa-paw"></i>
+        </div>
         <div class="container">
             <div class="differentials-content">
                 <h2>Diferenciais que fazem a diferença</h2>
@@ -658,6 +736,12 @@
     </section>
 
     <section class="evolution">
+        <div class="paw-trail">
+            <i class="fas fa-paw"></i>
+            <i class="fas fa-paw"></i>
+            <i class="fas fa-paw"></i>
+            <i class="fas fa-paw"></i>
+        </div>
         <div class="container">
             <div class="evolution-content">
                 <div class="evolution-icon"><i class="fas fa-rocket"></i></div>
@@ -673,6 +757,8 @@
     </section>
 
     <section class="access-levels" id="access">
+        <i class="fas fa-paw paw-decoration paw-bg-1"></i>
+        <i class="fas fa-paw paw-decoration paw-bg-2"></i>
         <div class="container">
             <div class="section-header">
                 <span class="section-badge">Níveis de Acesso</span>
@@ -691,6 +777,8 @@
     </section>
 
     <section class="cta" id="contact">
+        <i class="fas fa-paw paw-decoration paw-bg-1"></i>
+        <i class="fas fa-paw paw-decoration paw-bg-2"></i>
         <div class="container">
             <h2>Pronto para transformar sua clínica?</h2>
             <p>Entre em contato e descubra como o AmigoVet pode simplificar sua gestão</p>
@@ -702,6 +790,7 @@
     </section>
 
     <footer class="footer">
+        <i class="fas fa-paw paw-decoration paw-bg-1"></i>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
