@@ -238,25 +238,24 @@
 
         /* Mobile Mockup */
         .mobile-mockups {
-            display: flex; justify-content: center; gap: 32px;
-            flex-wrap: wrap;
+            display: flex; justify-content: center; gap: 40px;
+            flex-wrap: wrap; align-items: flex-start;
         }
         .mobile-mockup {
-            width: 280px; background: var(--dark);
-            border-radius: 36px; padding: 12px;
+            width: 300px; background: var(--dark);
+            border-radius: 40px; padding: 14px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
         .mobile-mockup-notch {
-            width: 120px; height: 28px; background: var(--dark);
-            border-radius: 0 0 20px 20px; margin: 0 auto -14px;
+            width: 100px; height: 24px; background: var(--dark);
+            border-radius: 0 0 16px 16px; margin: 0 auto -12px;
             position: relative; z-index: 2;
         }
         .mobile-mockup-screen {
-            background: white; border-radius: 28px; overflow: hidden;
-            aspect-ratio: 9/19.5;
+            background: white; border-radius: 30px; overflow: hidden;
         }
         .mobile-mockup-screen img {
-            width: 100%; height: 100%; object-fit: cover; object-position: top;
+            width: 100%; height: auto; display: block;
         }
 
         .preview-caption {
@@ -394,9 +393,9 @@
             .desktop-mockup { border-radius: 8px; padding: 8px 8px 0; }
             .desktop-mockup-bar { padding-bottom: 8px; }
             .desktop-mockup-dot { width: 8px; height: 8px; }
-            .mobile-mockups { gap: 16px; }
-            .mobile-mockup { width: 160px; border-radius: 24px; padding: 8px; }
-            .mobile-mockup-notch { width: 70px; height: 18px; margin-bottom: -10px; border-radius: 0 0 14px 14px; }
+            .mobile-mockups { gap: 20px; }
+            .mobile-mockup { width: 45%; max-width: 180px; border-radius: 24px; padding: 8px; }
+            .mobile-mockup-notch { width: 60px; height: 16px; margin-bottom: -8px; border-radius: 0 0 12px 12px; }
             .mobile-mockup-screen { border-radius: 18px; }
             .preview-caption h4 { font-size: 16px; }
             .preview-caption p { font-size: 13px; }
