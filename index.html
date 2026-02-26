@@ -188,8 +188,89 @@
         .module-content h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
         .module-content p { color: rgba(255, 255, 255, 0.7); font-size: 13px; line-height: 1.5; }
 
+        /* Preview/Showcase */
+        .preview { padding: 80px 0; background: var(--light); }
+        .preview-tabs {
+            display: flex; justify-content: center; gap: 8px;
+            flex-wrap: wrap; margin-bottom: 40px;
+        }
+        .preview-tab {
+            padding: 12px 20px; background: white; border: 2px solid transparent;
+            border-radius: 100px; font-size: 14px; font-weight: 600;
+            color: var(--gray); cursor: pointer; transition: all 0.3s;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .preview-tab:hover { border-color: var(--primary-light); color: var(--dark); }
+        .preview-tab.active {
+            background: var(--primary); color: white; border-color: var(--primary);
+        }
+        .preview-tab i { font-size: 16px; }
+
+        .preview-content { position: relative; }
+        .preview-screen {
+            display: none; animation: fadeIn 0.4s ease;
+        }
+        .preview-screen.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Desktop Mockup */
+        .desktop-mockup {
+            max-width: 1000px; margin: 0 auto;
+            background: var(--dark); border-radius: 12px;
+            padding: 12px 12px 0; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .desktop-mockup-bar {
+            display: flex; align-items: center; gap: 8px;
+            padding-bottom: 12px;
+        }
+        .desktop-mockup-dot {
+            width: 12px; height: 12px; border-radius: 50%;
+        }
+        .desktop-mockup-dot:nth-child(1) { background: #ff5f57; }
+        .desktop-mockup-dot:nth-child(2) { background: #febc2e; }
+        .desktop-mockup-dot:nth-child(3) { background: #28c840; }
+        .desktop-mockup-content {
+            background: white; border-radius: 8px 8px 0 0; overflow: hidden;
+        }
+        .desktop-mockup-content img {
+            width: 100%; height: auto; display: block;
+        }
+
+        /* Mobile Mockup */
+        .mobile-mockups {
+            display: flex; justify-content: center; gap: 32px;
+            flex-wrap: wrap;
+        }
+        .mobile-mockup {
+            width: 280px; background: var(--dark);
+            border-radius: 36px; padding: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .mobile-mockup-notch {
+            width: 120px; height: 28px; background: var(--dark);
+            border-radius: 0 0 20px 20px; margin: 0 auto -14px;
+            position: relative; z-index: 2;
+        }
+        .mobile-mockup-screen {
+            background: white; border-radius: 28px; overflow: hidden;
+            aspect-ratio: 9/19.5;
+        }
+        .mobile-mockup-screen img {
+            width: 100%; height: 100%; object-fit: cover; object-position: top;
+        }
+
+        .preview-caption {
+            text-align: center; margin-top: 24px;
+        }
+        .preview-caption h4 {
+            font-size: 18px; font-weight: 600; color: var(--dark); margin-bottom: 8px;
+        }
+        .preview-caption p {
+            font-size: 14px; color: var(--gray); max-width: 500px; margin: 0 auto;
+        }
+
         /* Differentials */
-        .differentials { padding: 80px 0; background: var(--light); }
+        .differentials { padding: 80px 0; background: var(--white); }
         .differentials-content { max-width: 700px; margin: 0 auto; }
         .differentials-content h2 { font-size: 28px; font-weight: 700; margin-bottom: 20px; text-align: center; }
         .differentials-content > p { font-size: 16px; color: var(--gray); margin-bottom: 32px; text-align: center; }
@@ -300,11 +381,25 @@
             .stat-label { font-size: 11px; }
             .section-title { font-size: 26px; }
             .section-subtitle { font-size: 14px; }
-            .features, .modules, .differentials, .evolution, .access-levels, .cta { padding: 60px 0; }
+            .features, .modules, .differentials, .evolution, .access-levels, .cta, .preview { padding: 60px 0; }
             .cta h2 { font-size: 24px; }
             .cta-buttons { flex-direction: column; align-items: stretch; }
             .cta-buttons .btn { width: 100%; }
             .whatsapp-float { bottom: 16px; right: 16px; width: 56px; height: 56px; font-size: 26px; }
+
+            /* Preview mobile */
+            .preview-tabs { gap: 6px; }
+            .preview-tab { padding: 10px 14px; font-size: 12px; }
+            .preview-tab i { display: none; }
+            .desktop-mockup { border-radius: 8px; padding: 8px 8px 0; }
+            .desktop-mockup-bar { padding-bottom: 8px; }
+            .desktop-mockup-dot { width: 8px; height: 8px; }
+            .mobile-mockups { gap: 16px; }
+            .mobile-mockup { width: 160px; border-radius: 24px; padding: 8px; }
+            .mobile-mockup-notch { width: 70px; height: 18px; margin-bottom: -10px; border-radius: 0 0 14px 14px; }
+            .mobile-mockup-screen { border-radius: 18px; }
+            .preview-caption h4 { font-size: 16px; }
+            .preview-caption p { font-size: 13px; }
         }
         @media (min-width: 769px) { .whatsapp-float { display: none; } }
     </style>
@@ -319,8 +414,8 @@
                 </a>
                 <div class="nav-links">
                     <a href="#features">Recursos</a>
+                    <a href="#preview">Veja o Sistema</a>
                     <a href="#modules">Modulos</a>
-                    <a href="#access">Niveis de Acesso</a>
                     <a href="https://wa.me/5521979784672?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20AmigoVet" target="_blank" class="btn btn-whatsapp">
                         <i class="fab fa-whatsapp"></i> Fale Conosco
                     </a>
@@ -334,8 +429,8 @@
 
     <div class="mobile-menu" id="mobile-menu">
         <a href="#features" onclick="toggleMenu()">Recursos</a>
+        <a href="#preview" onclick="toggleMenu()">Veja o Sistema</a>
         <a href="#modules" onclick="toggleMenu()">Modulos</a>
-        <a href="#access" onclick="toggleMenu()">Niveis de Acesso</a>
         <a href="#contact" onclick="toggleMenu()">Contato</a>
         <a href="https://wa.me/5521979784672?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20AmigoVet" target="_blank" class="btn btn-whatsapp">
             <i class="fab fa-whatsapp"></i> Falar pelo WhatsApp
@@ -385,6 +480,130 @@
                 <div class="feature-card"><div class="feature-icon"><i class="fas fa-cut"></i></div><h3>Banho e Tosa</h3><p>Modulo dedicado com dashboard proprio para tosadores.</p></div>
                 <div class="feature-card"><div class="feature-icon"><i class="fas fa-mobile-alt"></i></div><h3>Portal do Tutor</h3><p>Portal exclusivo para agendamentos, prontuarios e acesso a cameras.</p></div>
                 <div class="feature-card"><div class="feature-icon"><i class="fas fa-chart-line"></i></div><h3>Gestao Financeira</h3><p>Controle de faturamento, relatorios detalhados e gestao de pagamentos.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="preview" id="preview">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Preview</span>
+                <h2 class="section-title">Veja o Sistema em Acao</h2>
+                <p class="section-subtitle">Interface moderna e intuitiva para todos os usuarios</p>
+            </div>
+
+            <div class="preview-tabs">
+                <button class="preview-tab active" onclick="showPreview('gerente')">
+                    <i class="fas fa-chart-pie"></i> Painel Gerencial
+                </button>
+                <button class="preview-tab" onclick="showPreview('equipe')">
+                    <i class="fas fa-users"></i> Gestao de Equipe
+                </button>
+                <button class="preview-tab" onclick="showPreview('agendamento')">
+                    <i class="fas fa-calendar-plus"></i> Agendamento
+                </button>
+                <button class="preview-tab" onclick="showPreview('tutor')">
+                    <i class="fas fa-heart"></i> Portal do Tutor
+                </button>
+                <button class="preview-tab" onclick="showPreview('mobile')">
+                    <i class="fas fa-mobile-alt"></i> App Mobile
+                </button>
+            </div>
+
+            <div class="preview-content">
+                <!-- Painel Gerencial -->
+                <div class="preview-screen active" id="preview-gerente">
+                    <div class="desktop-mockup">
+                        <div class="desktop-mockup-bar">
+                            <div class="desktop-mockup-dot"></div>
+                            <div class="desktop-mockup-dot"></div>
+                            <div class="desktop-mockup-dot"></div>
+                        </div>
+                        <div class="desktop-mockup-content">
+                            <img src="images/painel-gerencial.png" alt="Painel Gerencial AmigoVet">
+                        </div>
+                    </div>
+                    <div class="preview-caption">
+                        <h4>Painel Gerencial Completo</h4>
+                        <p>Visao geral do negocio com estatisticas, atividades recentes, equipe online e resumo financeiro em tempo real.</p>
+                    </div>
+                </div>
+
+                <!-- Gestao de Equipe -->
+                <div class="preview-screen" id="preview-equipe">
+                    <div class="desktop-mockup">
+                        <div class="desktop-mockup-bar">
+                            <div class="desktop-mockup-dot"></div>
+                            <div class="desktop-mockup-dot"></div>
+                            <div class="desktop-mockup-dot"></div>
+                        </div>
+                        <div class="desktop-mockup-content">
+                            <img src="images/equipe.png" alt="Gestao de Equipe AmigoVet">
+                        </div>
+                    </div>
+                    <div class="preview-caption">
+                        <h4>Gestao de Equipe</h4>
+                        <p>Cadastre funcionarios, defina funcoes, gerencie terceirizados e acompanhe o status de cada membro da equipe.</p>
+                    </div>
+                </div>
+
+                <!-- Agendamento -->
+                <div class="preview-screen" id="preview-agendamento">
+                    <div class="desktop-mockup">
+                        <div class="desktop-mockup-bar">
+                            <div class="desktop-mockup-dot"></div>
+                            <div class="desktop-mockup-dot"></div>
+                            <div class="desktop-mockup-dot"></div>
+                        </div>
+                        <div class="desktop-mockup-content">
+                            <img src="images/agendamento.png" alt="Novo Agendamento AmigoVet">
+                        </div>
+                    </div>
+                    <div class="preview-caption">
+                        <h4>Agendamento em Etapas</h4>
+                        <p>Processo intuitivo: selecione servico, pet, profissional e horario. Sistema busca automaticamente por nome, CPF ou tutor.</p>
+                    </div>
+                </div>
+
+                <!-- Portal do Tutor Desktop -->
+                <div class="preview-screen" id="preview-tutor">
+                    <div class="desktop-mockup">
+                        <div class="desktop-mockup-bar">
+                            <div class="desktop-mockup-dot"></div>
+                            <div class="desktop-mockup-dot"></div>
+                            <div class="desktop-mockup-dot"></div>
+                        </div>
+                        <div class="desktop-mockup-content">
+                            <img src="images/tutor-desktop.png" alt="Portal do Tutor AmigoVet">
+                        </div>
+                    </div>
+                    <div class="preview-caption">
+                        <h4>Portal do Tutor</h4>
+                        <p>Area exclusiva para tutores gerenciarem seus pets, consultas, vacinas e acessarem cameras ao vivo durante internacoes.</p>
+                    </div>
+                </div>
+
+                <!-- Mobile -->
+                <div class="preview-screen" id="preview-mobile">
+                    <div class="mobile-mockups">
+                        <div class="mobile-mockup">
+                            <div class="mobile-mockup-notch"></div>
+                            <div class="mobile-mockup-screen">
+                                <img src="images/tutor-mobile.png" alt="App Mobile AmigoVet - Home">
+                            </div>
+                        </div>
+                        <div class="mobile-mockup">
+                            <div class="mobile-mockup-notch"></div>
+                            <div class="mobile-mockup-screen">
+                                <img src="images/calendario-mobile.png" alt="App Mobile AmigoVet - Calendario">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="preview-caption">
+                        <h4>100% Responsivo</h4>
+                        <p>Tutores agendam consultas e acompanham seus pets direto do celular. Interface otimizada para telas pequenas.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -501,6 +720,17 @@
                 toggleMenu();
             }
         });
+
+        function showPreview(name) {
+            // Remove active from all tabs
+            document.querySelectorAll('.preview-tab').forEach(tab => tab.classList.remove('active'));
+            // Remove active from all screens
+            document.querySelectorAll('.preview-screen').forEach(screen => screen.classList.remove('active'));
+            // Add active to clicked tab
+            event.target.closest('.preview-tab').classList.add('active');
+            // Show corresponding screen
+            document.getElementById('preview-' + name).classList.add('active');
+        }
     </script>
 </body>
 </html>
