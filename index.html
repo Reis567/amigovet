@@ -141,6 +141,25 @@
         .stat-value { font-size: 28px; font-weight: 700; color: var(--primary); }
         .stat-label { font-size: 13px; color: var(--gray); }
 
+        /* Hero Image */
+        .hero-image { margin-top: 48px; }
+        .hero-mockup {
+            max-width: 900px; margin: 0 auto;
+            background: var(--dark); border-radius: 12px;
+            padding: 10px 10px 0; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .hero-mockup-bar {
+            display: flex; align-items: center; gap: 6px; padding-bottom: 10px;
+        }
+        .hero-mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .hero-mockup-dot:nth-child(1) { background: #ff5f57; }
+        .hero-mockup-dot:nth-child(2) { background: #febc2e; }
+        .hero-mockup-dot:nth-child(3) { background: #28c840; }
+        .hero-mockup-content {
+            background: white; border-radius: 8px 8px 0 0; overflow: hidden;
+        }
+        .hero-mockup-content img { width: 100%; height: auto; display: block; }
+
         /* Sections */
         .section-header { text-align: center; margin-bottom: 48px; }
         .section-badge {
@@ -380,6 +399,11 @@
             .stat { flex: 1; min-width: 100px; padding: 12px 8px; }
             .stat-value { font-size: 22px; }
             .stat-label { font-size: 11px; }
+            .hero-image { margin-top: 32px; }
+            .hero-mockup { border-radius: 8px; padding: 6px 6px 0; }
+            .hero-mockup-bar { padding-bottom: 6px; gap: 4px; }
+            .hero-mockup-dot { width: 8px; height: 8px; }
+            .hero-mockup-content { border-radius: 6px 6px 0 0; }
             .section-title { font-size: 26px; }
             .section-subtitle { font-size: 14px; }
             .features, .modules, .differentials, .evolution, .access-levels, .cta, .preview { padding: 60px 0; }
@@ -458,6 +482,18 @@
                         <div class="stat"><div class="stat-value">6+</div><div class="stat-label">Niveis de acesso</div></div>
                         <div class="stat"><div class="stat-value">GPS</div><div class="stat-label">Tempo real</div></div>
                         <div class="stat"><div class="stat-value">24/7</div><div class="stat-label">Em evolucao</div></div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="hero-mockup">
+                        <div class="hero-mockup-bar">
+                            <div class="hero-mockup-dot"></div>
+                            <div class="hero-mockup-dot"></div>
+                            <div class="hero-mockup-dot"></div>
+                        </div>
+                        <div class="hero-mockup-content">
+                            <img src="images/painel-gerencial.png" alt="AmigoVet - Painel Gerencial">
+                        </div>
                     </div>
                 </div>
             </div>
