@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="AmigoVet - Sistema completo de gestao para clinicas veterinarias. Agendamentos, prontuarios, cameras, GPS e muito mais. Desenvolvido por Bugarin Tecnologia.">
     <meta name="keywords" content="sistema veterinario, gestao clinica veterinaria, software pet shop, agendamento veterinario, bugarin tecnologia">
     <title>AmigoVet - Sistema de Gestao para Clinicas Veterinarias | Bugarin Tecnologia</title>
@@ -16,7 +16,6 @@
             --primary-dark: #059669;
             --primary-light: #D1FAE5;
             --secondary: #6366F1;
-            --accent: #F59E0B;
             --dark: #1F2937;
             --gray: #6B7280;
             --light: #F9FAFB;
@@ -24,1412 +23,474 @@
             --gradient: linear-gradient(135deg, #10B981 0%, #059669 100%);
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Navigation */
+        /* Navbar */
         .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             box-shadow: var(--shadow);
-            transition: all 0.3s ease;
         }
-
         .navbar-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 0;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 0;
         }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--dark);
-        }
-
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--dark); }
         .logo-icon {
-            width: 44px;
-            height: 44px;
-            background: var(--gradient);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 20px;
+            width: 40px; height: 40px; background: var(--gradient);
+            border-radius: 10px; display: flex; align-items: center;
+            justify-content: center; color: white; font-size: 18px;
         }
-
-        .logo-text {
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .logo-text span {
-            color: var(--primary);
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--gray);
-            font-weight: 500;
-            transition: color 0.2s;
-            cursor: pointer;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
+        .logo-text { font-size: 22px; font-weight: 700; }
+        .logo-text span { color: var(--primary); }
+        .nav-links { display: flex; align-items: center; gap: 28px; }
+        .nav-links a { text-decoration: none; color: var(--gray); font-weight: 500; font-size: 15px; }
+        .nav-links a:hover { color: var(--primary); }
 
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s;
-            cursor: pointer;
-            border: none;
-            font-size: 16px;
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 8px; padding: 14px 24px; border-radius: 10px;
+            font-weight: 600; text-decoration: none; transition: all 0.2s;
+            cursor: pointer; border: none; font-size: 16px; min-height: 48px;
+        }
+        .btn-whatsapp { background: #25D366; color: white; box-shadow: var(--shadow); }
+        .btn-whatsapp:hover, .btn-whatsapp:active { background: #128C7E; transform: translateY(-2px); }
+        .btn-outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+        .btn-outline:hover, .btn-outline:active { background: var(--primary); color: white; }
+        .btn-lg { padding: 16px 28px; font-size: 17px; }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none; background: none; border: none;
+            font-size: 24px; color: var(--dark); cursor: pointer;
+            padding: 8px; min-width: 44px; min-height: 44px;
+        }
+        .mobile-menu {
+            display: none; position: fixed; top: 64px; left: 0; right: 0;
+            background: white; box-shadow: var(--shadow-lg); padding: 20px; z-index: 999;
+        }
+        .mobile-menu.active { display: block; }
+        .mobile-menu a {
+            display: block; padding: 16px; text-decoration: none;
+            color: var(--dark); font-weight: 500; font-size: 16px;
+            border-bottom: 1px solid var(--light);
+        }
+        .mobile-menu a:last-child { border-bottom: none; }
+        .mobile-menu .btn-whatsapp { margin-top: 16px; width: 100%; justify-content: center; }
+
+        /* Floating WhatsApp */
+        .whatsapp-float {
+            position: fixed; bottom: 24px; right: 24px;
+            width: 60px; height: 60px; background: #25D366;
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; color: white; font-size: 28px;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            z-index: 1000; text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .whatsapp-float:hover, .whatsapp-float:active {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
         }
 
-        .btn-primary {
-            background: var(--gradient);
-            color: white;
-            box-shadow: var(--shadow);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-whatsapp {
-            background: #25D366;
-            color: white;
-            box-shadow: var(--shadow);
-        }
-
-        .btn-whatsapp:hover {
-            background: #128C7E;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-lg {
-            padding: 16px 32px;
-            font-size: 18px;
-        }
-
-        /* Hero Section */
+        /* Hero */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 80px;
+            min-height: 100vh; display: flex; align-items: center;
+            padding: 100px 0 60px;
             background: linear-gradient(180deg, var(--light) 0%, var(--white) 100%);
-            position: relative;
-            overflow: hidden;
+            position: relative; overflow: hidden;
         }
-
         .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 800px;
-            height: 800px;
-            background: var(--primary-light);
-            border-radius: 50%;
-            opacity: 0.5;
-            z-index: 0;
+            content: ''; position: absolute; top: -50%; right: -20%;
+            width: 600px; height: 600px; background: var(--primary-light);
+            border-radius: 50%; opacity: 0.5; z-index: 0;
         }
-
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-text h1 {
-            font-size: 56px;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 24px;
-        }
-
+        .hero-content { position: relative; z-index: 1; text-align: center; }
+        .hero-text h1 { font-size: 42px; font-weight: 800; line-height: 1.15; margin-bottom: 20px; }
         .hero-text h1 span {
             background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
         .hero-text p {
-            font-size: 20px;
-            color: var(--gray);
-            margin-bottom: 32px;
-            max-width: 500px;
+            font-size: 17px; color: var(--gray); margin-bottom: 28px;
+            max-width: 600px; margin-left: auto; margin-right: auto;
         }
-
         .hero-buttons {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 48px;
+            display: flex; gap: 12px; justify-content: center;
+            flex-wrap: wrap; margin-bottom: 40px;
         }
-
-        .hero-stats {
-            display: flex;
-            gap: 48px;
-        }
-
+        .hero-stats { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; }
         .stat {
-            text-align: left;
+            text-align: center; padding: 16px 20px; background: white;
+            border-radius: 12px; box-shadow: var(--shadow); min-width: 120px;
         }
+        .stat-value { font-size: 28px; font-weight: 700; color: var(--primary); }
+        .stat-label { font-size: 13px; color: var(--gray); }
 
-        .stat-value {
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .stat-label {
-            font-size: 14px;
-            color: var(--gray);
-        }
-
-        .hero-image {
-            position: relative;
-        }
-
-        .hero-mockup {
-            width: 100%;
-            max-width: 600px;
-            border-radius: 16px;
-            box-shadow: var(--shadow-xl);
-            transform: perspective(1000px) rotateY(-5deg);
-            transition: transform 0.3s ease;
-        }
-
-        .hero-mockup:hover {
-            transform: perspective(1000px) rotateY(0deg);
-        }
-
-        /* Features Section */
-        .features {
-            padding: 120px 0;
-            background: var(--white);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 64px;
-        }
-
+        /* Sections */
+        .section-header { text-align: center; margin-bottom: 48px; }
         .section-badge {
-            display: inline-block;
-            padding: 8px 16px;
-            background: var(--primary-light);
-            color: var(--primary-dark);
-            border-radius: 100px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 16px;
+            display: inline-block; padding: 8px 16px;
+            background: var(--primary-light); color: var(--primary-dark);
+            border-radius: 100px; font-size: 14px; font-weight: 600; margin-bottom: 12px;
         }
+        .section-title { font-size: 32px; font-weight: 700; margin-bottom: 12px; }
+        .section-subtitle { font-size: 16px; color: var(--gray); max-width: 500px; margin: 0 auto; }
 
-        .section-title {
-            font-size: 42px;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-
-        .section-subtitle {
-            font-size: 18px;
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
+        /* Features */
+        .features { padding: 80px 0; background: var(--white); }
         .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;
         }
-
         .feature-card {
-            padding: 32px;
-            background: var(--light);
-            border-radius: 16px;
-            transition: all 0.3s ease;
+            padding: 28px; background: var(--light); border-radius: 16px; transition: all 0.3s ease;
         }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-            background: var(--white);
-        }
-
+        .feature-card:active { transform: scale(0.98); }
         .feature-icon {
-            width: 64px;
-            height: 64px;
-            background: var(--gradient);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 28px;
-            margin-bottom: 24px;
+            width: 56px; height: 56px; background: var(--gradient);
+            border-radius: 14px; display: flex; align-items: center;
+            justify-content: center; color: white; font-size: 24px; margin-bottom: 20px;
         }
+        .feature-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 10px; }
+        .feature-card p { color: var(--gray); font-size: 14px; line-height: 1.6; }
 
-        .feature-card h3 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .feature-card p {
-            color: var(--gray);
-            font-size: 15px;
-        }
-
-        /* Modules Section */
-        .modules {
-            padding: 120px 0;
-            background: var(--dark);
-            color: var(--white);
-        }
-
-        .modules .section-badge {
-            background: rgba(16, 185, 129, 0.2);
-        }
-
-        .modules .section-subtitle {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
+        /* Modules */
+        .modules { padding: 80px 0; background: var(--dark); color: var(--white); }
+        .modules .section-badge { background: rgba(16, 185, 129, 0.2); }
+        .modules .section-subtitle { color: rgba(255, 255, 255, 0.7); }
         .modules-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;
         }
-
         .module-card {
-            padding: 32px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            gap: 20px;
-            transition: all 0.3s ease;
+            padding: 24px; background: rgba(255, 255, 255, 0.05);
+            border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex; gap: 16px; align-items: flex-start;
         }
-
-        .module-card:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateX(8px);
-        }
-
         .module-icon {
-            width: 56px;
-            height: 56px;
-            background: var(--gradient);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            flex-shrink: 0;
+            width: 48px; height: 48px; background: var(--gradient);
+            border-radius: 12px; display: flex; align-items: center;
+            justify-content: center; font-size: 20px; flex-shrink: 0;
         }
+        .module-content h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+        .module-content p { color: rgba(255, 255, 255, 0.7); font-size: 13px; line-height: 1.5; }
 
-        .module-content h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .module-content p {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 14px;
-        }
-
-        /* Differentials Section */
-        .differentials {
-            padding: 120px 0;
-            background: var(--light);
-        }
-
-        .differentials-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 48px;
-            align-items: center;
-        }
-
-        .differentials-content h2 {
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 24px;
-        }
-
-        .differentials-content p {
-            font-size: 18px;
-            color: var(--gray);
-            margin-bottom: 32px;
-        }
-
-        .differentials-list {
-            list-style: none;
-        }
-
+        /* Differentials */
+        .differentials { padding: 80px 0; background: var(--light); }
+        .differentials-content { max-width: 700px; margin: 0 auto; }
+        .differentials-content h2 { font-size: 28px; font-weight: 700; margin-bottom: 20px; text-align: center; }
+        .differentials-content > p { font-size: 16px; color: var(--gray); margin-bottom: 32px; text-align: center; }
+        .differentials-list { list-style: none; }
         .differentials-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            margin-bottom: 24px;
+            display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px;
+            padding: 20px; background: white; border-radius: 14px; box-shadow: var(--shadow);
         }
-
         .differentials-list .icon {
-            width: 48px;
-            height: 48px;
-            background: var(--gradient);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 20px;
-            flex-shrink: 0;
+            width: 48px; height: 48px; background: var(--gradient);
+            border-radius: 12px; display: flex; align-items: center;
+            justify-content: center; color: white; font-size: 20px; flex-shrink: 0;
         }
+        .differentials-list h4 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+        .differentials-list p { font-size: 14px; color: var(--gray); margin: 0; line-height: 1.5; }
 
-        .differentials-list h4 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .differentials-list p {
-            font-size: 14px;
-            color: var(--gray);
-            margin: 0;
-        }
-
-        .differentials-image {
-            display: flex;
-            justify-content: center;
-        }
-
-        .differentials-image img {
-            max-width: 100%;
-            border-radius: 16px;
-            box-shadow: var(--shadow-xl);
-        }
-
-        /* Evolution Section */
-        .evolution {
-            padding: 120px 0;
-            background: var(--white);
-        }
-
-        .evolution-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
+        /* Evolution */
+        .evolution { padding: 80px 0; background: var(--white); }
+        .evolution-content { text-align: center; max-width: 700px; margin: 0 auto; }
         .evolution-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--gradient);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 36px;
-            margin: 0 auto 32px;
+            width: 72px; height: 72px; background: var(--gradient);
+            border-radius: 18px; display: flex; align-items: center;
+            justify-content: center; color: white; font-size: 32px; margin: 0 auto 24px;
         }
-
-        .evolution h2 {
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 24px;
-        }
-
-        .evolution p {
-            font-size: 18px;
-            color: var(--gray);
-            margin-bottom: 32px;
-        }
-
+        .evolution h2 { font-size: 28px; font-weight: 700; margin-bottom: 16px; }
+        .evolution p { font-size: 16px; color: var(--gray); margin-bottom: 32px; }
         .evolution-features {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-            margin-top: 48px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;
         }
-
         .evolution-feature {
-            padding: 24px;
-            background: var(--light);
-            border-radius: 12px;
-            text-align: center;
+            padding: 24px 20px; background: var(--light); border-radius: 14px; text-align: center;
         }
+        .evolution-feature i { font-size: 28px; color: var(--primary); margin-bottom: 12px; }
+        .evolution-feature h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+        .evolution-feature p { font-size: 13px; color: var(--gray); margin: 0; }
 
-        .evolution-feature i {
-            font-size: 32px;
-            color: var(--primary);
-            margin-bottom: 16px;
-        }
-
-        .evolution-feature h4 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .evolution-feature p {
-            font-size: 14px;
-            color: var(--gray);
-            margin: 0;
-        }
-
-        /* Access Levels Section */
-        .access-levels {
-            padding: 120px 0;
-            background: var(--secondary);
-            color: white;
-        }
-
-        .access-levels .section-badge {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-
-        .access-levels .section-subtitle {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
+        /* Access Levels */
+        .access-levels { padding: 80px 0; background: var(--secondary); color: white; }
+        .access-levels .section-badge { background: rgba(255, 255, 255, 0.2); color: white; }
+        .access-levels .section-subtitle { color: rgba(255, 255, 255, 0.8); }
         .access-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px;
         }
-
         .access-card {
-            padding: 32px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-align: center;
-            transition: all 0.3s ease;
+            padding: 24px 16px; background: rgba(255, 255, 255, 0.1);
+            border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.2); text-align: center;
         }
-
-        .access-card:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-8px);
-        }
-
         .access-icon {
-            width: 64px;
-            height: 64px;
-            background: var(--gradient);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 28px;
-            margin: 0 auto 20px;
+            width: 56px; height: 56px; background: var(--gradient);
+            border-radius: 14px; display: flex; align-items: center;
+            justify-content: center; color: white; font-size: 24px; margin: 0 auto 16px;
         }
+        .access-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+        .access-card p { font-size: 13px; opacity: 0.85; line-height: 1.5; }
 
-        .access-card h3 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .access-card p {
-            font-size: 14px;
-            opacity: 0.8;
-        }
-
-        /* Testimonials */
-        .testimonials {
-            padding: 120px 0;
-            background: var(--light);
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-        }
-
-        .testimonial-card {
-            padding: 32px;
-            background: var(--white);
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-        }
-
-        .testimonial-stars {
-            color: var(--accent);
-            margin-bottom: 16px;
-        }
-
-        .testimonial-text {
-            font-size: 16px;
-            color: var(--gray);
-            margin-bottom: 24px;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .testimonial-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: var(--gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-        }
-
-        .testimonial-name {
-            font-weight: 600;
-        }
-
-        .testimonial-role {
-            font-size: 14px;
-            color: var(--gray);
-        }
-
-        /* CTA Section */
-        .cta {
-            padding: 120px 0;
-            background: var(--gradient);
-            text-align: center;
-            color: white;
-        }
-
-        .cta h2 {
-            font-size: 42px;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-
-        .cta p {
-            font-size: 20px;
-            opacity: 0.9;
-            margin-bottom: 32px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .cta .btn-whatsapp {
-            background: white;
-            color: #25D366;
-        }
-
-        .cta .btn-whatsapp:hover {
-            background: var(--light);
-        }
-
-        .cta .btn-email {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .cta .btn-email:hover {
-            background: white;
-            color: var(--primary);
-        }
+        /* CTA */
+        .cta { padding: 80px 0; background: var(--gradient); text-align: center; color: white; }
+        .cta h2 { font-size: 28px; font-weight: 700; margin-bottom: 16px; }
+        .cta p { font-size: 16px; opacity: 0.9; margin-bottom: 28px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .cta-buttons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+        .cta .btn-whatsapp { background: white; color: #25D366; }
+        .cta .btn-email { background: transparent; color: white; border: 2px solid white; }
 
         /* Footer */
-        .footer {
-            padding: 60px 0 30px;
-            background: var(--dark);
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 48px;
-            margin-bottom: 48px;
-        }
-
-        .footer-brand p {
-            margin-top: 16px;
-            font-size: 14px;
-        }
-
-        .footer-contact {
-            text-align: right;
-        }
-
-        .footer-title {
-            color: white;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
+        .footer { padding: 48px 0 100px; background: var(--dark); color: rgba(255, 255, 255, 0.7); }
+        .footer-content { text-align: center; margin-bottom: 32px; }
+        .footer-brand { margin-bottom: 24px; }
+        .footer-brand .logo { justify-content: center; margin-bottom: 12px; }
+        .footer-brand p { font-size: 14px; max-width: 400px; margin: 0 auto; }
+        .footer-contact { margin-bottom: 24px; }
+        .footer-title { color: white; font-weight: 600; margin-bottom: 16px; font-size: 16px; }
         .footer-contact-item {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 12px;
-            margin-bottom: 16px;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 14px;
+            display: flex; align-items: center; justify-content: center;
+            gap: 10px; margin-bottom: 12px; color: rgba(255, 255, 255, 0.8); font-size: 14px;
         }
-
-        .footer-contact-item i {
-            color: var(--primary);
-            font-size: 18px;
-        }
-
+        .footer-contact-item i { color: var(--primary); font-size: 18px; }
         .footer-bottom {
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 14px;
+            padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center; font-size: 13px;
         }
-
         .developer-badge {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: rgba(255, 255, 255, 0.6);
+            display: flex; align-items: center; justify-content: center;
+            gap: 8px; color: rgba(255, 255, 255, 0.6); margin-top: 12px;
         }
-
-        .developer-badge span {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: var(--dark);
-            cursor: pointer;
-        }
+        .developer-badge span { color: var(--primary); font-weight: 600; }
 
         /* Responsive */
-        @media (max-width: 992px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-text h1 {
-                font-size: 42px;
-            }
-
-            .hero-text p {
-                margin: 0 auto 32px;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .hero-stats {
-                justify-content: center;
-            }
-
-            .hero-image {
-                display: none;
-            }
-
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .modules-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .differentials-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .differentials-image {
-                order: -1;
-            }
-
-            .evolution-features {
-                grid-template-columns: 1fr;
-            }
-
-            .access-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-contact {
-                text-align: left;
-            }
-
-            .footer-contact-item {
-                justify-content: flex-start;
-            }
-        }
-
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .hero-text h1 {
-                font-size: 32px;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-            }
-
-            .hero-stats {
-                flex-direction: column;
-                gap: 24px;
-            }
-
-            .stat {
-                text-align: center;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                font-size: 32px;
-            }
-
-            .cta h2 {
-                font-size: 32px;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .footer-contact {
-                text-align: center;
-            }
-
-            .footer-contact-item {
-                justify-content: center;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                gap: 16px;
-                text-align: center;
-            }
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
+            .hero { padding: 80px 0 60px; min-height: auto; }
+            .hero-text h1 { font-size: 28px; }
+            .hero-text p { font-size: 15px; }
+            .hero-buttons { flex-direction: column; align-items: stretch; }
+            .hero-buttons .btn { width: 100%; }
+            .hero-stats { gap: 12px; }
+            .stat { flex: 1; min-width: 100px; padding: 12px 8px; }
+            .stat-value { font-size: 22px; }
+            .stat-label { font-size: 11px; }
+            .section-title { font-size: 26px; }
+            .section-subtitle { font-size: 14px; }
+            .features, .modules, .differentials, .evolution, .access-levels, .cta { padding: 60px 0; }
+            .cta h2 { font-size: 24px; }
+            .cta-buttons { flex-direction: column; align-items: stretch; }
+            .cta-buttons .btn { width: 100%; }
+            .whatsapp-float { bottom: 16px; right: 16px; width: 56px; height: 56px; font-size: 26px; }
         }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
+        @media (min-width: 769px) { .whatsapp-float { display: none; } }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
             <div class="navbar-content">
                 <a href="#" class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-paw"></i>
-                    </div>
+                    <div class="logo-icon"><i class="fas fa-paw"></i></div>
                     <span class="logo-text">Amigo<span>Vet</span></span>
                 </a>
                 <div class="nav-links">
                     <a href="#features">Recursos</a>
                     <a href="#modules">Modulos</a>
                     <a href="#access">Niveis de Acesso</a>
-                    <a href="#contact" class="btn btn-whatsapp">
+                    <a href="https://wa.me/5521979784672?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20AmigoVet" target="_blank" class="btn btn-whatsapp">
                         <i class="fab fa-whatsapp"></i> Fale Conosco
                     </a>
                 </div>
-                <button class="mobile-menu-btn">
-                    <i class="fas fa-bars"></i>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">
+                    <i class="fas fa-bars" id="menu-icon"></i>
                 </button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#features" onclick="toggleMenu()">Recursos</a>
+        <a href="#modules" onclick="toggleMenu()">Modulos</a>
+        <a href="#access" onclick="toggleMenu()">Niveis de Acesso</a>
+        <a href="#contact" onclick="toggleMenu()">Contato</a>
+        <a href="https://wa.me/5521979784672?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20AmigoVet" target="_blank" class="btn btn-whatsapp">
+            <i class="fab fa-whatsapp"></i> Falar pelo WhatsApp
+        </a>
+    </div>
+
+    <a href="https://wa.me/5521979784672?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20AmigoVet" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="hero-text animate">
+                <div class="hero-text">
                     <h1>Gestao <span>completa</span> para sua clinica veterinaria</h1>
-                    <p>Sistema intuitivo que simplifica agendamentos, prontuarios, financeiro e a comunicacao com tutores. Com cameras ao vivo, GPS para taxi dog e muito mais. Tudo em um so lugar.</p>
+                    <p>Sistema intuitivo com agendamentos, prontuarios, cameras ao vivo, GPS para taxi dog e muito mais. Tudo em um so lugar.</p>
                     <div class="hero-buttons">
                         <a href="https://wa.me/5521979784672?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20AmigoVet" target="_blank" class="btn btn-whatsapp btn-lg">
                             <i class="fab fa-whatsapp"></i> Falar pelo WhatsApp
                         </a>
-                        <a href="#features" class="btn btn-outline btn-lg">
-                            Conhecer Recursos
-                        </a>
+                        <a href="#features" class="btn btn-outline btn-lg">Conhecer Recursos</a>
                     </div>
                     <div class="hero-stats">
-                        <div class="stat">
-                            <div class="stat-value">6+</div>
-                            <div class="stat-label">Niveis de acesso</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">GPS</div>
-                            <div class="stat-label">Rastreamento em tempo real</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">24/7</div>
-                            <div class="stat-label">Sistema em evolucao</div>
-                        </div>
+                        <div class="stat"><div class="stat-value">6+</div><div class="stat-label">Niveis de acesso</div></div>
+                        <div class="stat"><div class="stat-value">GPS</div><div class="stat-label">Tempo real</div></div>
+                        <div class="stat"><div class="stat-value">24/7</div><div class="stat-label">Em evolucao</div></div>
                     </div>
-                </div>
-                <div class="hero-image animate delay-2">
-                    <img src="https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?w=800&q=80" alt="Dashboard AmigoVet" class="hero-mockup">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
     <section class="features" id="features">
         <div class="container">
             <div class="section-header">
                 <span class="section-badge">Recursos</span>
                 <h2 class="section-title">Tudo que sua clinica precisa</h2>
-                <p class="section-subtitle">Ferramentas poderosas e faceis de usar para otimizar cada aspecto do seu negocio</p>
+                <p class="section-subtitle">Ferramentas poderosas para otimizar cada aspecto do seu negocio</p>
             </div>
             <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-calendar-check"></i>
-                    </div>
-                    <h3>Agendamento Inteligente</h3>
-                    <p>Sistema de agendamento online com confirmacao automatica, lembretes por WhatsApp e gestao de fila em tempo real. Solicitacoes de tutores com aprovacao da recepcao.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-file-medical"></i>
-                    </div>
-                    <h3>Prontuario Digital</h3>
-                    <p>Historico completo do pet com anexos, receitas digitais e exportacao em PDF. Acesso rapido a informacoes clinicas. Prontuarios confidenciais quando necessario.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Gestao Financeira</h3>
-                    <p>Controle de faturamento, relatorios detalhados, gestao de pagamentos e controle de comissoes para profissionais terceirizados.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <h3>Cameras ao Vivo</h3>
-                    <p>Libere acesso temporario a cameras para tutores acompanharem cirurgias ou internacoes em tempo real. Controle total de quando e para quem liberar o acesso.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-car"></i>
-                    </div>
-                    <h3>Taxi Dog com GPS</h3>
-                    <p>Modulo completo para gerenciar servico de transporte de pets com rastreamento GPS em tempo real. Tutores acompanham a localizacao do pet pelo celular.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-users-cog"></i>
-                    </div>
-                    <h3>Multi-Perfis</h3>
-                    <p>Usuarios podem ter multiplos perfis simultaneamente. Um funcionario pode ser recepcao e taxi dog ao mesmo tempo, com acesso a todas as funcionalidades.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <h3>Profissionais Terceirizados</h3>
-                    <p>Cadastre veterinarios externos que atendem na clinica. Sistema calcula automaticamente a comissao da clinica em cada atendimento.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-cut"></i>
-                    </div>
-                    <h3>Banho e Tosa</h3>
-                    <p>Modulo dedicado para servicos de estetica. Dashboard proprio para tosadores com fila de atendimento e controle de servicos.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Portal do Tutor</h3>
-                    <p>Portal exclusivo onde tutores agendam consultas, acompanham o pet, visualizam prontuarios, recebem notificacoes e acessam cameras.</p>
-                </div>
+                <div class="feature-card"><div class="feature-icon"><i class="fas fa-calendar-check"></i></div><h3>Agendamento Inteligente</h3><p>Agendamento online com confirmacao automatica e gestao de fila em tempo real.</p></div>
+                <div class="feature-card"><div class="feature-icon"><i class="fas fa-file-medical"></i></div><h3>Prontuario Digital</h3><p>Historico completo do pet com anexos, receitas digitais e exportacao em PDF.</p></div>
+                <div class="feature-card"><div class="feature-icon"><i class="fas fa-video"></i></div><h3>Cameras ao Vivo</h3><p>Libere acesso temporario a cameras para tutores acompanharem cirurgias ou internacoes.</p></div>
+                <div class="feature-card"><div class="feature-icon"><i class="fas fa-car"></i></div><h3>Taxi Dog com GPS</h3><p>Rastreamento GPS em tempo real. Tutores acompanham a localizacao do pet pelo celular.</p></div>
+                <div class="feature-card"><div class="feature-icon"><i class="fas fa-users-cog"></i></div><h3>Multi-Perfis</h3><p>Um funcionario pode ter multiplos perfis simultaneamente no mesmo login.</p></div>
+                <div class="feature-card"><div class="feature-icon"><i class="fas fa-handshake"></i></div><h3>Terceirizados</h3><p>Cadastre veterinarios externos com calculo automatico de comissao.</p></div>
+                <div class="feature-card"><div class="feature-icon"><i class="fas fa-cut"></i></div><h3>Banho e Tosa</h3><p>Modulo dedicado com dashboard proprio para tosadores.</p></div>
+                <div class="feature-card"><div class="feature-icon"><i class="fas fa-mobile-alt"></i></div><h3>Portal do Tutor</h3><p>Portal exclusivo para agendamentos, prontuarios e acesso a cameras.</p></div>
+                <div class="feature-card"><div class="feature-icon"><i class="fas fa-chart-line"></i></div><h3>Gestao Financeira</h3><p>Controle de faturamento, relatorios detalhados e gestao de pagamentos.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Modules Section -->
     <section class="modules" id="modules">
         <div class="container">
             <div class="section-header">
                 <span class="section-badge">Modulos</span>
                 <h2 class="section-title">Um sistema para cada funcao</h2>
-                <p class="section-subtitle">Dashboards personalizados para cada tipo de usuario da sua clinica</p>
+                <p class="section-subtitle">Dashboards personalizados para cada tipo de usuario</p>
             </div>
             <div class="modules-grid">
-                <div class="module-card">
-                    <div class="module-icon">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <div class="module-content">
-                        <h3>Recepcao</h3>
-                        <p>Gestao de fila, check-in rapido, cadastro de tutores e pets, aprovacao de agendamentos, acesso a cameras e atendimento ao cliente.</p>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-icon">
-                        <i class="fas fa-stethoscope"></i>
-                    </div>
-                    <div class="module-content">
-                        <h3>Veterinario</h3>
-                        <p>Prontuarios digitais, prescricoes com PDF, historico clinico, anexos de exames, agenda propria e delegacao de atendimentos.</p>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-icon">
-                        <i class="fas fa-cut"></i>
-                    </div>
-                    <div class="module-content">
-                        <h3>Tosador</h3>
-                        <p>Dashboard dedicado, agenda propria de banho e tosa, controle de servicos, observacoes sobre o pet e comunicacao com tutores.</p>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-icon">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                    <div class="module-content">
-                        <h3>Gerente</h3>
-                        <p>Relatorios financeiros, gestao completa de equipe, permissoes de acesso, terceirizados, visao geral e configuracoes do sistema.</p>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-icon">
-                        <i class="fas fa-car"></i>
-                    </div>
-                    <div class="module-content">
-                        <h3>Taxi Dog</h3>
-                        <p>Gestao de corridas, rastreamento GPS em tempo real, comunicacao com tutores, controle de disponibilidade e historico de viagens.</p>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <div class="module-content">
-                        <h3>Tutor</h3>
-                        <p>Portal do cliente para agendamentos, historico do pet, vacinas, acesso a cameras, rastreamento GPS e comunicacao direta.</p>
-                    </div>
-                </div>
+                <div class="module-card"><div class="module-icon"><i class="fas fa-user-tie"></i></div><div class="module-content"><h3>Recepcao</h3><p>Gestao de fila, cadastro de tutores, aprovacao de agendamentos e cameras.</p></div></div>
+                <div class="module-card"><div class="module-icon"><i class="fas fa-stethoscope"></i></div><div class="module-content"><h3>Veterinario</h3><p>Prontuarios digitais, prescricoes com PDF, historico clinico e anexos.</p></div></div>
+                <div class="module-card"><div class="module-icon"><i class="fas fa-cut"></i></div><div class="module-content"><h3>Tosador</h3><p>Dashboard dedicado, agenda propria e controle de servicos.</p></div></div>
+                <div class="module-card"><div class="module-icon"><i class="fas fa-chart-pie"></i></div><div class="module-content"><h3>Gerente</h3><p>Relatorios financeiros, gestao de equipe e configuracoes.</p></div></div>
+                <div class="module-card"><div class="module-icon"><i class="fas fa-car"></i></div><div class="module-content"><h3>Taxi Dog</h3><p>Gestao de corridas, GPS em tempo real e comunicacao.</p></div></div>
+                <div class="module-card"><div class="module-icon"><i class="fas fa-heart"></i></div><div class="module-content"><h3>Tutor</h3><p>Portal do cliente para agendamentos, historico e cameras.</p></div></div>
             </div>
         </div>
     </section>
 
-    <!-- Differentials Section -->
     <section class="differentials">
         <div class="container">
-            <div class="differentials-grid">
-                <div class="differentials-content">
-                    <h2>Diferenciais que fazem a diferenca</h2>
-                    <p>O AmigoVet foi desenvolvido pensando nas necessidades reais de clinicas veterinarias brasileiras.</p>
-                    <ul class="differentials-list">
-                        <li>
-                            <div class="icon"><i class="fas fa-video"></i></div>
-                            <div>
-                                <h4>Cameras com Controle Total</h4>
-                                <p>Libere acesso a cameras especificas para tutores especificos, por tempo determinado. Ideal para cirurgias e internacoes.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <div>
-                                <h4>GPS em Tempo Real</h4>
-                                <p>Tutores acompanham a localizacao exata do pet durante o transporte. Seguranca e tranquilidade para todos.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="icon"><i class="fas fa-user-friends"></i></div>
-                            <div>
-                                <h4>Multiplos Perfis por Usuario</h4>
-                                <p>Um funcionario pode acumular funcoes. Seja recepcao pela manha e taxi dog a tarde, tudo no mesmo login.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="icon"><i class="fas fa-percentage"></i></div>
-                            <div>
-                                <h4>Controle de Terceirizados</h4>
-                                <p>Gerencie veterinarios externos com calculo automatico de comissao. Transparencia total nos repasses.</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="differentials-image">
-                    <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=80" alt="Pet feliz">
-                </div>
+            <div class="differentials-content">
+                <h2>Diferenciais que fazem a diferenca</h2>
+                <p>O AmigoVet foi desenvolvido pensando nas necessidades reais de clinicas veterinarias brasileiras.</p>
+                <ul class="differentials-list">
+                    <li><div class="icon"><i class="fas fa-video"></i></div><div><h4>Cameras com Controle Total</h4><p>Libere acesso a cameras especificas para tutores especificos, por tempo determinado.</p></div></li>
+                    <li><div class="icon"><i class="fas fa-map-marker-alt"></i></div><div><h4>GPS em Tempo Real</h4><p>Tutores acompanham a localizacao exata do pet durante o transporte.</p></div></li>
+                    <li><div class="icon"><i class="fas fa-user-friends"></i></div><div><h4>Multiplos Perfis por Usuario</h4><p>Um funcionario pode acumular funcoes no mesmo login.</p></div></li>
+                    <li><div class="icon"><i class="fas fa-percentage"></i></div><div><h4>Controle de Terceirizados</h4><p>Gerencie veterinarios externos com calculo automatico de comissao.</p></div></li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <!-- Evolution Section -->
     <section class="evolution">
         <div class="container">
             <div class="evolution-content">
-                <div class="evolution-icon">
-                    <i class="fas fa-rocket"></i>
-                </div>
+                <div class="evolution-icon"><i class="fas fa-rocket"></i></div>
                 <h2>Sistema em Constante Evolucao</h2>
-                <p>O AmigoVet nao e um software estatico. Nosso sistema esta em desenvolvimento continuo, e voce pode solicitar novas funcionalidades e melhorias a qualquer momento. Sua clinica cresce, e o sistema cresce junto.</p>
+                <p>O AmigoVet esta em desenvolvimento continuo. Voce pode solicitar novas funcionalidades a qualquer momento. Sua clinica cresce, e o sistema cresce junto.</p>
                 <div class="evolution-features">
-                    <div class="evolution-feature">
-                        <i class="fas fa-comments"></i>
-                        <h4>Sugestoes de Clientes</h4>
-                        <p>Ouvimos nossas clinicas parceiras e implementamos as funcionalidades que fazem sentido para o mercado.</p>
-                    </div>
-                    <div class="evolution-feature">
-                        <i class="fas fa-sync-alt"></i>
-                        <h4>Atualizacoes Frequentes</h4>
-                        <p>Novas funcionalidades e melhorias sao adicionadas regularmente, sem custos extras.</p>
-                    </div>
-                    <div class="evolution-feature">
-                        <i class="fas fa-headset"></i>
-                        <h4>Suporte Dedicado</h4>
-                        <p>Nossa equipe esta sempre pronta para ouvir suas necessidades e ajudar no que for preciso.</p>
-                    </div>
+                    <div class="evolution-feature"><i class="fas fa-comments"></i><h4>Sugestoes de Clientes</h4><p>Ouvimos e implementamos</p></div>
+                    <div class="evolution-feature"><i class="fas fa-sync-alt"></i><h4>Atualizacoes Frequentes</h4><p>Melhorias sem custos extras</p></div>
+                    <div class="evolution-feature"><i class="fas fa-headset"></i><h4>Suporte Dedicado</h4><p>Equipe pronta para ajudar</p></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Access Levels Section -->
     <section class="access-levels" id="access">
         <div class="container">
             <div class="section-header">
                 <span class="section-badge">Niveis de Acesso</span>
                 <h2 class="section-title">Controle total de permissoes</h2>
-                <p class="section-subtitle">Cada usuario ve apenas o que precisa ver. Seguranca e organizacao para sua equipe.</p>
+                <p class="section-subtitle">Cada usuario ve apenas o que precisa ver</p>
             </div>
             <div class="access-grid">
-                <div class="access-card">
-                    <div class="access-icon">
-                        <i class="fas fa-crown"></i>
-                    </div>
-                    <h3>Administrador</h3>
-                    <p>Acesso total ao sistema. Configuracoes, usuarios, relatorios e todas as funcionalidades disponiveis.</p>
-                </div>
-                <div class="access-card">
-                    <div class="access-icon">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                    <h3>Gerente</h3>
-                    <p>Gestao de equipe, relatorios financeiros, terceirizados e visao geral da operacao.</p>
-                </div>
-                <div class="access-card">
-                    <div class="access-icon">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <h3>Recepcao</h3>
-                    <p>Atendimento, agendamentos, fila, cadastros e liberacao de cameras para tutores.</p>
-                </div>
-                <div class="access-card">
-                    <div class="access-icon">
-                        <i class="fas fa-stethoscope"></i>
-                    </div>
-                    <h3>Veterinario</h3>
-                    <p>Prontuarios, prescricoes, seus atendimentos e delegacao para outros profissionais.</p>
-                </div>
-                <div class="access-card">
-                    <div class="access-icon">
-                        <i class="fas fa-cut"></i>
-                    </div>
-                    <h3>Tosador</h3>
-                    <p>Dashboard de banho e tosa, sua fila de atendimento e servicos do dia.</p>
-                </div>
-                <div class="access-card">
-                    <div class="access-icon">
-                        <i class="fas fa-car"></i>
-                    </div>
-                    <h3>Taxi Dog</h3>
-                    <p>Corridas disponiveis, suas corridas, GPS e comunicacao com tutores.</p>
-                </div>
+                <div class="access-card"><div class="access-icon"><i class="fas fa-crown"></i></div><h3>Admin</h3><p>Acesso total ao sistema</p></div>
+                <div class="access-card"><div class="access-icon"><i class="fas fa-chart-pie"></i></div><h3>Gerente</h3><p>Equipe e financeiro</p></div>
+                <div class="access-card"><div class="access-icon"><i class="fas fa-user-tie"></i></div><h3>Recepcao</h3><p>Atendimento e fila</p></div>
+                <div class="access-card"><div class="access-icon"><i class="fas fa-stethoscope"></i></div><h3>Veterinario</h3><p>Prontuarios e prescricoes</p></div>
+                <div class="access-card"><div class="access-icon"><i class="fas fa-cut"></i></div><h3>Tosador</h3><p>Banho e tosa</p></div>
+                <div class="access-card"><div class="access-icon"><i class="fas fa-car"></i></div><h3>Taxi Dog</h3><p>Corridas e GPS</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">Depoimentos</span>
-                <h2 class="section-title">O que nossos clientes dizem</h2>
-                <p class="section-subtitle">Clinicas que ja transformaram sua gestao com o AmigoVet</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-text">"O AmigoVet revolucionou nossa clinica. Antes perdiamos horas com agendamentos por telefone, agora tudo e automatico e os tutores adoram poder acompanhar tudo pelo celular!"</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">DR</div>
-                        <div>
-                            <div class="testimonial-name">Dra. Renata Silva</div>
-                            <div class="testimonial-role">Pet Care Clinica - SP</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-text">"O modulo de cameras foi um diferencial enorme. Tutores se sentem seguros acompanhando cirurgias e isso gera muitas indicacoes. E o GPS do taxi dog e sensacional!"</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">CM</div>
-                        <div>
-                            <div class="testimonial-name">Dr. Carlos Mendes</div>
-                            <div class="testimonial-role">Hospital Vet Plus - RJ</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-text">"O que mais gosto e que o sistema esta sempre evoluindo. Sugeri uma funcionalidade e em poucas semanas ja estava no ar. Atendimento nota 10!"</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">AF</div>
-                        <div>
-                            <div class="testimonial-name">Amanda Ferreira</div>
-                            <div class="testimonial-role">Gerente - Clinica Animal - MG</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
     <section class="cta" id="contact">
         <div class="container">
             <h2>Pronto para transformar sua clinica?</h2>
-            <p>Entre em contato e descubra como o AmigoVet pode simplificar sua gestao e encantar seus clientes</p>
+            <p>Entre em contato e descubra como o AmigoVet pode simplificar sua gestao</p>
             <div class="cta-buttons">
-                <a href="https://wa.me/5521979784672?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20AmigoVet" target="_blank" class="btn btn-whatsapp btn-lg">
-                    <i class="fab fa-whatsapp"></i> Falar pelo WhatsApp
-                </a>
-                <a href="mailto:matheus.reis@bugarintec.com.br?subject=Interesse%20no%20AmigoVet" class="btn btn-email btn-lg">
-                    <i class="fas fa-envelope"></i> Enviar Email
-                </a>
+                <a href="https://wa.me/5521979784672?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20AmigoVet" target="_blank" class="btn btn-whatsapp btn-lg"><i class="fab fa-whatsapp"></i> Falar pelo WhatsApp</a>
+                <a href="mailto:matheus.reis@bugarintec.com.br?subject=Interesse%20no%20AmigoVet" class="btn btn-email btn-lg"><i class="fas fa-envelope"></i> Enviar Email</a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <a href="#" class="logo">
-                        <div class="logo-icon">
-                            <i class="fas fa-paw"></i>
-                        </div>
-                        <span class="logo-text">Amigo<span>Vet</span></span>
-                    </a>
-                    <p>Sistema completo de gestao para clinicas veterinarias. Simplifique sua operacao, encante seus clientes e acompanhe seu negocio crescer.</p>
+                    <a href="#" class="logo"><div class="logo-icon"><i class="fas fa-paw"></i></div><span class="logo-text">Amigo<span>Vet</span></span></a>
+                    <p>Sistema completo de gestao para clinicas veterinarias.</p>
                 </div>
                 <div class="footer-contact">
                     <h4 class="footer-title">Entre em Contato</h4>
-                    <div class="footer-contact-item">
-                        <i class="fab fa-whatsapp"></i>
-                        <span>(21) 97978-4672</span>
-                    </div>
-                    <div class="footer-contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>matheus.reis@bugarintec.com.br</span>
-                    </div>
+                    <div class="footer-contact-item"><i class="fab fa-whatsapp"></i><span>(21) 97978-4672</span></div>
+                    <div class="footer-contact-item"><i class="fas fa-envelope"></i><span>matheus.reis@bugarintec.com.br</span></div>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2024 AmigoVet. Todos os direitos reservados.</p>
-                <div class="developer-badge">
-                    <i class="fas fa-code"></i>
-                    Desenvolvido por <span>Bugarin Tecnologia</span>
-                </div>
+                <div class="developer-badge"><i class="fas fa-code"></i>Desenvolvido por <span>Bugarin Tecnologia</span></div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Navbar background on scroll
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-            } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('active');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        }
+        document.addEventListener('click', function(e) {
+            const menu = document.getElementById('mobile-menu');
+            const btn = document.querySelector('.mobile-menu-btn');
+            if (!menu.contains(e.target) && !btn.contains(e.target) && menu.classList.contains('active')) {
+                toggleMenu();
             }
-        });
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.feature-card, .module-card, .access-card, .testimonial-card, .differentials-list li, .evolution-feature').forEach(el => {
-            observer.observe(el);
         });
     </script>
 </body>
